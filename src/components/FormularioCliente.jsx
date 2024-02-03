@@ -8,10 +8,12 @@ const FormularioCliente = () => {
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
   const [detalles, setDetalles] = useState("");
-  const [citasAgendadas, setCitasAgendadas] = useState([])
+  const [citasAgendadas, setCitasAgendadas] = useState([]);
 
-  function handleSubmit(){
-
+  function handleSubmit(e) {
+    e.preventDefault();
+    setCitasAgendadas([...citasAgendadas, nombreMascota]);
+    console.log(citasAgendadas);
   }
   return (
     <>
@@ -25,7 +27,6 @@ const FormularioCliente = () => {
               placeholder="Introduzca el nombre de su mascota"
               minLength={3}
               maxLength={20}
-              required
               onChange={(e) => setNombreMascota(e.target.value)}
               value={nombreMascota}
             ></Form.Control>
@@ -37,7 +38,6 @@ const FormularioCliente = () => {
               placeholder="Introduzca el nombre del dueño"
               minLength={3}
               maxLength={20}
-              required
               onChange={(e) => setNombreDuenio(e.target.value)}
               value={nombreDuenio}
             ></Form.Control>
@@ -49,7 +49,6 @@ const FormularioCliente = () => {
               placeholder="dd/mm/aa"
               minLength={0}
               maxLength={20}
-              required
               onChange={(e) => setFecha(e.target.value)}
               value={fecha}
             ></Form.Control>
@@ -61,7 +60,6 @@ const FormularioCliente = () => {
               placeholder="hh:mm"
               minLength={0}
               maxLength={20}
-              required
               onChange={(e) => setHora(e.target.value)}
               value={hora}
             ></Form.Control>
@@ -73,18 +71,16 @@ const FormularioCliente = () => {
               placeholder="Breve descripcion de los síntomas de la mascota"
               minLength={10}
               maxLength={500}
-              required
               onChange={(e) => setDetalles(e.target.value)}
               value={detalles}
             ></Form.Control>
-            <Button variant="primary" type="submit" className="my-3">
-              Agendar turno
-            </Button>
           </Form.Group>
+          <Button variant="primary" type="submit" className="my-3">
+            Agendar turno
+          </Button>
         </Form>
       </div>
-      <ListaCistas
-      ></ListaCistas>
+      <ListaCistas></ListaCistas>
     </>
   );
 };

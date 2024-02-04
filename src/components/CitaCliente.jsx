@@ -1,30 +1,27 @@
 import { Accordion, Button, Card } from "react-bootstrap";
 
-const CitaCliente = () => {
+const CitaCliente = ({citaClienteProps, numeroOrdenProps}) => {
   return (
     <Card style={{ width: "18rem" }} className="mx-3">
       <Card.Body>
-        <Card.Title>Número de orden</Card.Title>
+        <Card.Title>Orden nro {numeroOrdenProps}</Card.Title>
         <Card.Text>
-          Dueño: Nombre
+          Dueño: {citaClienteProps.nombreDuenio}
         </Card.Text>
         <Card.Text>
-          Mascota: Nombre
+          Mascota: {citaClienteProps.nombreMascota}
         </Card.Text>
         <Card.Text>
-          Fecha: dd/mm/aa
+          Fecha: {citaClienteProps.fecha}
         </Card.Text>
         <Card.Text>
-          Hora: hh:mm
+          Hora: {citaClienteProps.hora}
         </Card.Text>
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="1">
             <Accordion.Header>Síntomas</Accordion.Header>
             <Accordion.Body>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A nam
-              maxime eligendi amet consectetur corrupti praesentium aliquid
-              vero! Molestiae, harum ab ea doloribus in quisquam eaque quos
-              alias quo ipsum perspiciatis ut. Est vel eos labore voluptas quos
+              {citaClienteProps.detalles}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

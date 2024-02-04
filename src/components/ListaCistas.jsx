@@ -1,15 +1,19 @@
 import CitaCliente from "./CitaCliente";
 
-const ListaCistas = () => {
+const ListaCistas = ({ citasAgendadasProps }) => {
   return (
     <>
       <div className="container text-center">
         <h2>Citas agendadas</h2>
       </div>
       <div className="container d-flex flex-row">
-        <CitaCliente></CitaCliente>
-        <CitaCliente></CitaCliente>
-        <CitaCliente></CitaCliente>
+        {citasAgendadasProps.map((cita, posicionElemento) => (
+          <CitaCliente
+            key={posicionElemento}
+            citaClienteProps={cita}
+            numeroOrdenProps = {posicionElemento}
+          ></CitaCliente>
+        ))}
       </div>
     </>
   );

@@ -12,7 +12,7 @@ const FormularioCliente = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setCitasAgendadas([...citasAgendadas, nombreMascota]);
+    setCitasAgendadas([...citasAgendadas, {nombreMascota, nombreDuenio, fecha, hora, detalles}]);
     console.log(citasAgendadas);
   }
   return (
@@ -80,7 +80,7 @@ const FormularioCliente = () => {
           </Button>
         </Form>
       </div>
-      <ListaCistas></ListaCistas>
+      <ListaCistas citasAgendadasProps={citasAgendadas}></ListaCistas>
     </>
   );
 };

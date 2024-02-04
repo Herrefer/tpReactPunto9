@@ -1,6 +1,6 @@
 import CitaCliente from "./CitaCliente";
 
-const ListaCistas = ({ citasAgendadasProps }) => {
+const ListaCistas = ({ citasAgendadasProps, borrarCitaProps }) => {
   return (
     <>
       <div className="container text-center">
@@ -12,6 +12,7 @@ const ListaCistas = ({ citasAgendadasProps }) => {
             key={posicionElemento}
             citaClienteProps={cita}
             numeroOrdenProps = {posicionElemento}
+            borrarCitaProps ={borrarCitaProps}
           ></CitaCliente>
         ))}
       </div>

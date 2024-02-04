@@ -8,17 +8,25 @@ const FormularioCliente = () => {
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
   const [detalles, setDetalles] = useState("");
-  const citasLocalStorage = JSON.parse(localStorage.getItem("keyCitas")) || []
+  const citasLocalStorage = JSON.parse(localStorage.getItem("keyCitas")) || [];
   const [citasAgendadas, setCitasAgendadas] = useState(citasLocalStorage);
 
   useEffect(() => {
-    localStorage.setItem("keyCitas", JSON.stringify(citasAgendadas))
+    localStorage.setItem("keyCitas", JSON.stringify(citasAgendadas));
   }, [citasAgendadas]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setCitasAgendadas([...citasAgendadas, {nombreMascota, nombreDuenio, fecha, hora, detalles}]);
+    let idCita = crypto.randomUUID()
+    setCitasAgendadas([
+      ...citasAgendadas,
+      { nombreMascota, nombreDuenio, fecha, hora, detalles, idCita},
+    ]);
     console.log(citasAgendadas);
+  }
+  function borrarCita(numeroCita) {
+    const citasFiltradas = citasAgendadas.filter((cita) => cita !== numeroCita);
+    setCitasAgendadas(citasFiltradas);
   }
   return (
     <>
@@ -85,7 +93,10 @@ const FormularioCliente = () => {
           </Button>
         </Form>
       </div>
-      <ListaCistas citasAgendadasProps={citasAgendadas}></ListaCistas>
+      <ListaCistas
+        citasAgendadasProps={citasAgendadas}
+        borrarCitaProps={borrarCita}
+      ></ListaCistas>
     </>
   );
 };

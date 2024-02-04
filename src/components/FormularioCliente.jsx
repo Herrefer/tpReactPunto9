@@ -15,16 +15,33 @@ const FormularioCliente = () => {
     localStorage.setItem("keyCitas", JSON.stringify(citasAgendadas));
   }, [citasAgendadas]);
 
+  //expresiones regulares
+  const expRegNombreDuenio = /^[a-zA-Zá-úÁ-ÚüÜñÑ\s']+$/;
+  const expRegNombreMascota = /^[a-zA-Zá-úÁ-ÚüÜñÑ\s']+$/;
+  const expRegFecha = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{2}$/;
+  const expRegHora = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
   function handleSubmit(e) {
-    e.preventDefault();
-    let idCita = crypto.randomUUID()
-    setCitasAgendadas([
-      ...citasAgendadas,
-      { nombreMascota, nombreDuenio, fecha, hora, detalles, idCita},
-    ]);
+    if (
+      expRegNombreDuenio.test(nombreDuenio) &&
+      expRegNombreMascota.test(nombreMascota) &&
+      expRegFecha.test(fecha) &&
+      expRegHora.test(hora)
+    ) {
+      e.preventDefault();
+      let idCita = crypto.randomUUID();
+      setCitasAgendadas([
+        ...citasAgendadas,
+        { nombreMascota, nombreDuenio, fecha, hora, detalles, idCita },
+      ]);
+    }else{
+      alert("Por favor, verifique los datos introducidos")
+    }
   }
   function borrarCita(idUnica) {
-    const citasFiltradas = citasAgendadas.filter((cita) => cita.idCita !== idUnica);
+    const citasFiltradas = citasAgendadas.filter(
+      (cita) => cita.idCita !== idUnica
+    );
     setCitasAgendadas(citasFiltradas);
   }
   return (
@@ -38,20 +55,22 @@ const FormularioCliente = () => {
               type="text"
               placeholder="Introduzca el nombre de su mascota"
               minLength={3}
-              maxLength={20}
+              maxLength={30}
               onChange={(e) => setNombreMascota(e.target.value)}
               value={nombreMascota}
+              required
             ></Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formNombreDueño">
             <Form.Label>Nombre del dueño</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Introduzca el nombre del dueño"
+              placeholder="Introduzca el nombre completo del dueño"
               minLength={3}
-              maxLength={20}
+              maxLength={80}
               onChange={(e) => setNombreDuenio(e.target.value)}
               value={nombreDuenio}
+              required
             ></Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formFecha">
@@ -59,10 +78,11 @@ const FormularioCliente = () => {
             <Form.Control
               type="number"
               placeholder="dd/mm/aa"
-              minLength={0}
-              maxLength={20}
+              minLength={8}
+              maxLength={8}
               onChange={(e) => setFecha(e.target.value)}
               value={fecha}
+              required
             ></Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formHora">
@@ -70,10 +90,11 @@ const FormularioCliente = () => {
             <Form.Control
               type="number"
               placeholder="hh:mm"
-              minLength={0}
-              maxLength={20}
+              minLength={5}
+              maxLength={5}
               onChange={(e) => setHora(e.target.value)}
               value={hora}
+              required
             ></Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formSintomas">
@@ -85,6 +106,7 @@ const FormularioCliente = () => {
               maxLength={500}
               onChange={(e) => setDetalles(e.target.value)}
               value={detalles}
+              required
             ></Form.Control>
           </Form.Group>
           <Button variant="primary" type="submit" className="my-3">

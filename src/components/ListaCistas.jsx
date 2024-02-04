@@ -11,7 +11,6 @@ const ListaCistas = ({ citasAgendadasProps, borrarCitaProps }) => {
           <CitaCliente
             key={posicionElemento}
             citaClienteProps={cita}
-            numeroOrdenProps = {posicionElemento}
             borrarCitaProps ={borrarCitaProps}
           ></CitaCliente>
         ))}

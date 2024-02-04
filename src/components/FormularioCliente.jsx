@@ -22,7 +22,6 @@ const FormularioCliente = () => {
       ...citasAgendadas,
       { nombreMascota, nombreDuenio, fecha, hora, detalles, idCita},
     ]);
-    console.log(citasAgendadas);
   }
   function borrarCita(idUnica) {
     const citasFiltradas = citasAgendadas.filter((cita) => cita.idCita !== idUnica);

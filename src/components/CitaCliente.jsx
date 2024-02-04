@@ -1,14 +1,13 @@
 import { Accordion, Button, Card } from "react-bootstrap";
 
-const CitaCliente = ({
-  citaClienteProps,
-  numeroOrdenProps,
-  borrarCitaProps,
-}) => {
+const CitaCliente = ({ citaClienteProps, borrarCitaProps }) => {
   return (
     <Card style={{ width: "18rem" }} className="mx-3">
       <Card.Body>
-        <Card.Title>Orden nro {numeroOrdenProps}</Card.Title>
+        <Card.Title>
+          ID orden
+          <p className="text-success fs-6">{citaClienteProps.idCita}</p>
+        </Card.Title>
         <Card.Text>Dueño: {citaClienteProps.nombreDuenio}</Card.Text>
         <Card.Text>Mascota: {citaClienteProps.nombreMascota}</Card.Text>
         <Card.Text>Fecha: {citaClienteProps.fecha}</Card.Text>

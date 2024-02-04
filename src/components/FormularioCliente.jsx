@@ -18,14 +18,13 @@ const FormularioCliente = () => {
   //expresiones regulares
   const expRegNombreDuenio = /^[a-zA-Zá-úÁ-ÚüÜñÑ\s']+$/;
   const expRegNombreMascota = /^[a-zA-Zá-úÁ-ÚüÜñÑ\s']+$/;
-  const expRegFecha = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{2}$/;
+  const expRegFecha = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{10}$/;
   const expRegHora = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
   function handleSubmit(e) {
     if (
       expRegNombreDuenio.test(nombreDuenio) &&
       expRegNombreMascota.test(nombreMascota) &&
-      expRegFecha.test(fecha) &&
       expRegHora.test(hora)
     ) {
       e.preventDefault();
@@ -53,7 +52,7 @@ const FormularioCliente = () => {
             <Form.Label>Nombre de la mascota</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Introduzca el nombre de su mascota"
+              placeholder="Introduzca el nombre de la mascota"
               minLength={3}
               maxLength={30}
               onChange={(e) => setNombreMascota(e.target.value)}
@@ -62,11 +61,11 @@ const FormularioCliente = () => {
             ></Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formNombreDueño">
-            <Form.Label>Nombre del dueño</Form.Label>
+            <Form.Label>Nombre completo del dueño</Form.Label>
             <Form.Control
               type="text"
               placeholder="Introduzca el nombre completo del dueño"
-              minLength={3}
+              minLength={10}
               maxLength={80}
               onChange={(e) => setNombreDuenio(e.target.value)}
               value={nombreDuenio}
@@ -76,10 +75,8 @@ const FormularioCliente = () => {
           <Form.Group className="mb-3" controlId="formFecha">
             <Form.Label>Fecha</Form.Label>
             <Form.Control
-              type="number"
+              type="date"
               placeholder="dd/mm/aa"
-              minLength={8}
-              maxLength={8}
               onChange={(e) => setFecha(e.target.value)}
               value={fecha}
               required
@@ -88,7 +85,7 @@ const FormularioCliente = () => {
           <Form.Group className="mb-3" controlId="formHora">
             <Form.Label>Hora</Form.Label>
             <Form.Control
-              type="number"
+              type="time"
               placeholder="hh:mm"
               minLength={5}
               maxLength={5}

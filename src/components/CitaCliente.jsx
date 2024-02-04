@@ -2,7 +2,7 @@ import { Accordion, Button, Card } from "react-bootstrap";
 
 const CitaCliente = ({ citaClienteProps, borrarCitaProps }) => {
   return (
-    <Card style={{ width: "18rem" }} className="mx-3">
+    <Card style={{ width: "15rem" }} className="mx-3 mb-3">
       <Card.Body>
         <Card.Title>
           ID orden

@@ -83,7 +83,7 @@ const FormularioCliente = () => {
             ></Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formHora">
-            <Form.Label>Hora</Form.Label>
+            <Form.Label>Hora (en formato 24 hs)</Form.Label>
             <Form.Control
               type="time"
               placeholder="hh:mm"

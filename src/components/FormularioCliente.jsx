@@ -24,8 +24,8 @@ const FormularioCliente = () => {
     ]);
     console.log(citasAgendadas);
   }
-  function borrarCita(numeroCita) {
-    const citasFiltradas = citasAgendadas.filter((cita) => cita !== numeroCita);
+  function borrarCita(idUnica) {
+    const citasFiltradas = citasAgendadas.filter((cita) => cita.idCita !== idUnica);
     setCitasAgendadas(citasFiltradas);
   }
   return (

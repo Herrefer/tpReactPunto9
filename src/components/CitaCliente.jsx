@@ -22,7 +22,7 @@ const CitaCliente = ({
         <Button
           variant="danger"
           className="mt-3"
-          onClick={() => borrarCitaProps(numeroOrdenProps)}
+          onClick={() => borrarCitaProps(citaClienteProps.idCita)}
         >
           Cancelar turno
         </Button>
